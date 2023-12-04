@@ -1,0 +1,52 @@
+@import "normalize";
+@import "variables";
+@import "mixins";
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Kulim Park', sans-serif;
+  color: $color-white;
+}
+
+body, html {
+  background: #232222;
+}
+
+input {
+  width: 100%;
+  padding: 8px 10px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 8px;
+  border: 2px solid transparent;
+  outline: $color-light;
+  background: $color-white;
+  color: $color-black;
+
+  &::placeholder {
+    color: $color-secondary;
+    font-size: 0.875rem;
+    font-weight: 275;
+    line-height: 40px;
+  }
+
+  &:focus {
+    border: 2px solid $color-light;
+  }
+}
+
+main {
+  min-height: 100vh;
+  background: url("../img/main-background.jpg") no-repeat center center;
+  background-size: cover;
+}
+
+.container {
+  padding: 2% 0;
+  max-width: 500px;
+  margin: auto;
+}
+
+@import "components/weather-widget";

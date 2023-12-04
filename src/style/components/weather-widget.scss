@@ -1,0 +1,150 @@
+.weather-widget {
+  border-radius: 24px;
+  border: 2px solid $color-light;
+  background: $gradient-1;
+  box-shadow: $box-shadow-1;
+  min-height: 90vh;
+
+  &__header {
+    background: $color-dark-purple;
+    border-radius: 22px 22px 0 0;
+    padding: 24px 18px;
+    @include flexSpaceBetween;
+  }
+
+  &__left-content {
+    @include flexAlignCenter;
+    gap: 10px;
+  }
+
+  &__buttons {
+    @include flexAlignCenter;
+    gap: 5px;
+  }
+
+  &__button {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    background: $color-white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s;
+
+    img {
+      transition: all 0.3s;
+    }
+
+    &:hover {
+      background-color: $color-light-gray;
+
+      img {
+        transform: scale3d(1.3, 1.3, 1.3);
+      }
+    }
+  }
+
+  &__wrapper {
+    padding: 24px 18px;
+    min-height: 100%;
+    @include flexColumn;
+    gap: 32px;
+  }
+
+  &__popular-city, &__hourly-forecast {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2%;
+  }
+
+  &__weekly-forecast {
+    @include flexColumn;
+  }
+
+  &__popular-card, &__forecast-card, {
+    @include flexAllColumnCenter;
+    gap: 10px;
+    text-align: center;
+    max-width: 85px;
+    border-radius: 16px;
+    flex-basis: 100%;
+    padding: 10px;
+    border: 1px solid $color-light;
+    background: $color-purple;
+    box-shadow: $box-shadow-2;
+  }
+  &__weekly-card {
+    @include flexSpaceBetween;
+  }
+  &__info-wrapper {
+    @include gridGap(8px);
+  }
+
+  &__info-top {
+    @include flexAllCenter;
+    gap: 5%;
+    border-radius: 8px;
+    background-color: $color-purple-opacity;
+    padding: 24px 0;
+  }
+
+  &__info-location {
+    @include flexAlignCenter;
+    gap: 6px;
+  }
+
+  &__info-right {
+    @include gridGap(12px);
+  }
+
+  &__info-text {
+    @include gridGap(8px);
+  }
+
+  &__info-city {
+    color: $color-grey;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+  }
+
+  &__info-temp {
+    font-size: 64px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+
+  &__info-weather {
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+  }
+
+  &__hourly-wrapper, &__weekly-wrapper {
+    @include gridGap(10px);
+  }
+
+  &__hourly-title, &__weekly-title {
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+  }
+
+  &__info-bottom {
+    border-radius: 8px;
+    background-color: $color-purple;
+    @include flexSpaceEvenly;
+    padding: 10px;
+  }
+
+  &__info-item {
+    @include flexAlignCenter;
+    gap: 8px;
+  }
+}
