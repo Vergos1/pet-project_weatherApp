@@ -24,9 +24,13 @@
   }
 }
 
-
 body, html {
   background: #232222;
+  overflow-y: hidden;
+}
+
+section {
+  padding: 0.4% 0;
 }
 
 input {
@@ -58,13 +62,5 @@ main {
   background-size: cover;
 }
 
-.container {
-  padding: 2% 0;
-  max-width: 1200px;
-  margin: auto;
-  @include mobile {
-    padding: 0;
-  }
-}
 
 @import "components/weather-widget";

@@ -5,11 +5,13 @@
   box-shadow: $box-shadow-1;
   animation: pounce 1s ease;
   min-width: 500px;
+  max-width: 35%;
   overflow: hidden;
-  max-height: 100vh;
-  max-width: 50%;
+  max-height: 98vh;
+  min-height: 98vh;
   margin: 0 auto;
   @include mobile {
+    padding-bottom: 50px;
     border-radius: 0;
     min-height: 100vh;
     max-height: none;
@@ -23,7 +25,7 @@
     border-radius: 22px 22px 0 0;
     padding: 24px 18px;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 30%;
     @include mobile {
       border-radius: 0;
     }
@@ -31,6 +33,9 @@
 
   &__input-search {
     min-width: 100%;
+    @include mobile {
+      border-right: 4px;
+    }
   }
 
   &__left-content {
@@ -84,10 +89,13 @@
     padding: 24px 18px;
     display: grid;
     gap: 32px;
-    min-height: 500px;
-    min-height: 100vh;
-    max-height: 100vh;
-    overflow: auto;
+    max-height: 85vh;
+    overflow-y: scroll;
+
+    @include mobile {
+      padding: 24px 18px 50px;
+      height: max-content;
+    }
   }
 
   &__loader-popular, &__loader-selected, &__loader-all {
@@ -108,10 +116,12 @@
   &__selected-city-hidden {
     @include flexColumn;
     gap: 32px;
+  height: max-content;
   }
 
   &__popular-city-wrapper {
     position: relative;
+    min-width: 100%;
     min-height: 100px;
     overflow-x: auto;
   }
@@ -131,18 +141,21 @@
   }
 
   &__popular-img {
-    object-fit: cover;
-    width: 36px;
+    object-fit: contain;
+    max-height: 36px;
+    max-width: 80px;
   }
 
   &__weekly-image {
-    object-fit: cover;
-    width: 42px;
+    object-fit: contain;
+    max-height: 36px;
+    max-width: 80px;
   }
 
   &__forecast-image {
-    object-fit: cover;
-    max-height: 22px;
+    object-fit: contain;
+    max-height: 36px;
+    max-width: 80px;
   }
 
   &__popular-name {
@@ -167,7 +180,9 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 2%;
+    height: 150px;
+    min-width: 100%;
+    gap: 1.5%;
     @include mobile {
       max-width: max-content;
     }
@@ -199,11 +214,10 @@
     animation: pounce 1s ease;
     gap: 10px;
     text-align: center;
-    max-width: 85px;
     border-radius: 16px;
     flex-basis: 100%;
     padding: 10px;
-    height: 100px;
+    min-height: 100%;
     max-height: 100px;
     border: 1px solid $color-light;
     background: $color-purple;
@@ -260,6 +274,9 @@
   &__info-location {
     @include flexAlignCenter;
     gap: 6px;
+    @include mobile {
+      justify-content: center;
+    }
   }
 
   &__info-right {

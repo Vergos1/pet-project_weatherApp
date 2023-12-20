@@ -1,5 +1,5 @@
 "use strict";
-const apiKey = "ZTP45N2BUEBFFTMBFHLHAPCC7";
+const apiKey = "YA6TN94A66N2CWQFJK34WGR35";
 
 //doc: DOM elements
 const serverErrorText = document.getElementById('server-error');
