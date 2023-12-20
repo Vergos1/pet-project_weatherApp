@@ -36,10 +36,6 @@
                 </div>
             </header>
             <div class="weather-widget__wrapper">
-                <!-- server error message -->
-                <div class="weather-widget__server-error" id="server-error">
-                    <p>the server is not responding, please try again later</p>
-                </div>
                 <!-- loader main -->
                 <img class="weather-widget__loader-all" id="main-loader" src="src/img/loader.svg" alt="weather">
 
@@ -53,6 +49,10 @@
 
                 <!-- selected city -->
                 <div class="weather-widget__selected-city-wrapper">
+                    <!-- server error message -->
+                    <div class="weather-widget__server-error" id="server-error">
+                        <p>the server does not respond or you entered an incorrect address</p>
+                    </div>
                     <img class="weather-widget__loader-selected" id="selected-loader" src="src/img/loader.svg"
                          alt="weather">
                     <div class="weather-widget__selected-city-hidden" id="select-city-wrapper">
