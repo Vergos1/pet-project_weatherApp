@@ -1,15 +1,36 @@
 .weather-widget {
-  border-radius: 24px;
+  border-radius: 24px 24px 6px 6px;
   border: 2px solid $color-light;
   background: $gradient-1;
   box-shadow: $box-shadow-1;
-  min-height: 90vh;
+  animation: pounce 1s ease;
+  min-width: 500px;
+  overflow: hidden;
+  max-height: 100vh;
+  max-width: 50%;
+  margin: 0 auto;
+  @include mobile {
+    border-radius: 0;
+    min-height: 100vh;
+    max-height: none;
+    min-width: 100%;
+    max-width: 100%;
+  }
+
 
   &__header {
     background: $color-dark-purple;
     border-radius: 22px 22px 0 0;
     padding: 24px 18px;
-    @include flexSpaceBetween;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    @include mobile {
+      border-radius: 0;
+    }
+  }
+
+  &__input-search {
+    min-width: 100%;
   }
 
   &__left-content {
@@ -17,20 +38,34 @@
     gap: 10px;
   }
 
+  .active-panel {
+    transition: all 0.3s ease;
+    animation: exitElement 1s ease;
+    visibility: hidden;
+  }
+
   &__buttons {
     @include flexAlignCenter;
     gap: 5px;
   }
 
+  &__server-error {
+    animation: pounce 1s ease;
+    display: none;
+    margin-top: 100px;
+    text-align: center;
+  }
+
   &__button {
     width: 40px;
     height: 40px;
-    border-radius: 8px;
+    border-radius: 50px;
     background: $color-white;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: background-color 0.3s;
+    margin-left: auto;
 
     img {
       transition: all 0.3s;
@@ -40,16 +75,92 @@
       background-color: $color-light-gray;
 
       img {
-        transform: scale3d(1.3, 1.3, 1.3);
+        transform: rotate3d(1, 1, 1, 360deg);
       }
     }
   }
 
   &__wrapper {
     padding: 24px 18px;
-    min-height: 100%;
+    display: grid;
+    gap: 32px;
+    min-height: 500px;
+    min-height: 100vh;
+    max-height: 100vh;
+    overflow: auto;
+  }
+
+  &__loader-popular, &__loader-selected, &__loader-all {
+    object-fit: contain;
+    max-width: 150px;
+    max-height: 250px;
+    transition: all 0.3s ease;
+    position: absolute;
+    top: calc(50% - 75px);
+    left: calc(50% - 75px);
+  }
+
+  &__selected-city-wrapper {
+    animation: pounce 1s ease;
+    position: relative;
+  }
+
+  &__selected-city-hidden {
     @include flexColumn;
     gap: 32px;
+  }
+
+  &__popular-city-wrapper {
+    position: relative;
+    min-height: 100px;
+    overflow-x: auto;
+  }
+
+  &__weekly-temp, &__hourly-temp, &__forecast-temp, &__popular-temp {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+  }
+
+  &__weekly-name, &__hourly-name, &__popular-name {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+  }
+
+  &__popular-img {
+    object-fit: cover;
+    width: 36px;
+  }
+
+  &__weekly-image {
+    object-fit: cover;
+    width: 42px;
+  }
+
+  &__forecast-image {
+    object-fit: cover;
+    max-height: 22px;
+  }
+
+  &__popular-name {
+    font-size: 14px;
+    text-transform: uppercase;
+  }
+
+  &__info-date {
+    text-wrap: none;
+    white-space: nowrap;
+  }
+
+  &__weekly-name, &__weekly-temp {
+    width: 25%;
+  }
+
+  &__weekly-temp {
+    text-align: right;
   }
 
   &__popular-city, &__hourly-forecast {
@@ -57,37 +168,93 @@
     align-items: center;
     justify-content: space-between;
     gap: 2%;
+    @include mobile {
+      max-width: max-content;
+    }
+  }
+
+  &__hourly-forecast, &__popular-city {
+    overflow-x: auto;
+    padding-bottom: 14px;
+
+    &::-webkit-scrollbar {
+      box-shadow: none;
+      height: 10px;
+      background: none;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      box-shadow: none;
+      border-radius: 16px;
+    }
   }
 
   &__weekly-forecast {
     @include flexColumn;
+    gap: 10px;
   }
 
   &__popular-card, &__forecast-card, {
     @include flexAllColumnCenter;
+    animation: pounce 1s ease;
     gap: 10px;
     text-align: center;
     max-width: 85px;
     border-radius: 16px;
     flex-basis: 100%;
     padding: 10px;
+    height: 100px;
+    max-height: 100px;
+    border: 1px solid $color-light;
+    background: $color-purple;
+    box-shadow: $box-shadow-2;
+    @include mobile {
+      min-width: 100px;
+      max-width: none;
+    }
+  }
+
+  &__weekly-card {
+    @include flexSpaceBetween;
+    padding: 10px;
+    border-radius: 16px;
     border: 1px solid $color-light;
     background: $color-purple;
     box-shadow: $box-shadow-2;
   }
-  &__weekly-card {
-    @include flexSpaceBetween;
-  }
+
   &__info-wrapper {
+    animation: pounce 1s ease;
     @include gridGap(8px);
+    min-width: 100%;
+    @include mobile {
+      height: max-content;
+    }
   }
 
   &__info-top {
-    @include flexAllCenter;
-    gap: 5%;
+    @include gridGap(5%);
+    align-items: center;
+    grid-template-columns:1fr repeat(1, 45% );
     border-radius: 8px;
     background-color: $color-purple-opacity;
-    padding: 24px 0;
+    padding: 24px 12px;
+    @include mobile {
+      gap: 24px;
+      height: max-content;
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__info-left {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__info-image {
+    object-fit: cover;
+    width: 200px;
+    height: auto;
   }
 
   &__info-location {
@@ -101,6 +268,11 @@
 
   &__info-text {
     @include gridGap(8px);
+    @include mobile {
+      text-align: center;
+      align-items: center;
+      justify-content: center;
+    }
   }
 
   &__info-city {
@@ -127,6 +299,7 @@
 
   &__hourly-wrapper, &__weekly-wrapper {
     @include gridGap(10px);
+    overflow-x: auto;
   }
 
   &__hourly-title, &__weekly-title {

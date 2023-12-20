@@ -347,6 +347,8 @@ template {
   display: none;
 }
 
+//custom
+
 a {
   text-decoration: none;
 }
@@ -363,4 +365,8 @@ button {
   font-family: inherit;
   font-size: inherit;
   color: inherit;
+}
+
+input[type="search"]::-webkit-search-cancel-button {
+  display: none;
 }
