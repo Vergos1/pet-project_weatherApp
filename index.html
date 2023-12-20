@@ -51,75 +51,80 @@
                 <div class="weather-widget__selected-city-wrapper">
                     <!-- server error message -->
                     <div class="weather-widget__server-error" id="server-error">
-                        <p>the server does not respond or you entered an incorrect address</p>
+                        <p>the server does not respond</p>
                     </div>
-                    <img class="weather-widget__loader-selected" id="selected-loader" src="src/img/loader.svg"
-                         alt="weather">
-                    <div class="weather-widget__selected-city-hidden" id="select-city-wrapper">
-                        <div class="weather-widget__info-wrapper">
-                            <div class="weather-widget__info-top">
-                                <div class="weather-widget__info-left">
-                                    <img class="weather-widget__info-image" id="select-city-image" src=""
-                                         alt="weather now">
-                                </div>
-                                <div class="weather-widget__info-right">
-                                    <div class="weather-widget__info-text">
-                                        <p class="weather-widget__info-date">
-                                            Today, <span id="select-city-date"></span>
-                                        </p>
-                                        <div class="weather-widget__info-location">
-                                            <img src="src/img/location-icon.svg" alt="location">
-                                            <p class="weather-widget__info-city" id="select-city">
+                    <div class="weather-widget__server-error" id="search-error">
+                        <p>please enter a valid city</p>
+                    </div>
+                    <div id="city-errors-wrapper">
+                        <img class="weather-widget__loader-selected" id="selected-loader" src="src/img/loader.svg"
+                             alt="weather">
+                        <div class="weather-widget__selected-city-hidden" id="select-city-wrapper">
+                            <div class="weather-widget__info-wrapper">
+                                <div class="weather-widget__info-top">
+                                    <div class="weather-widget__info-left">
+                                        <img class="weather-widget__info-image" id="select-city-image" src=""
+                                             alt="weather now">
+                                    </div>
+                                    <div class="weather-widget__info-right">
+                                        <div class="weather-widget__info-text">
+                                            <p class="weather-widget__info-date">
+                                                Today, <span id="select-city-date"></span>
+                                            </p>
+                                            <div class="weather-widget__info-location">
+                                                <img src="src/img/location-icon.svg" alt="location">
+                                                <p class="weather-widget__info-city" id="select-city">
 
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="weather-widget__info-text">
+                                            <p class="weather-widget__info-temp" id="select-city-temp">
+
+                                            </p>
+                                            <p class="weather-widget__info-weather" id="select-city-weather-name">
+                                                sunny
                                             </p>
                                         </div>
                                     </div>
-                                    <div class="weather-widget__info-text">
-                                        <p class="weather-widget__info-temp" id="select-city-temp">
+                                </div>
+                                <div class="weather-widget__info-bottom">
+                                    <div class="weather-widget__info-item">
+                                        <img src="src/img/wind-icon.svg" alt="wind">
+                                        <p class="weather-widget__info-text" id="select-city-max-speed-wind">
 
                                         </p>
-                                        <p class="weather-widget__info-weather" id="select-city-weather-name">
-                                            sunny
+                                    </div>
+                                    <div class="weather-widget__info-item">
+                                        <img src="src/img/humidity-icon.svg" alt="humidity">
+                                        <p class="weather-widget__info-text" id="select-city-humidity">
+
+                                        </p>
+                                    </div>
+                                    <div class="weather-widget__info-item">
+                                        <img src="src/img/pressure-icon.svg" alt="pressure">
+                                        <p class="weather-widget__info-text" id="select-city-pressure">
+
                                         </p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="weather-widget__info-bottom">
-                                <div class="weather-widget__info-item">
-                                    <img src="src/img/wind-icon.svg" alt="wind">
-                                    <p class="weather-widget__info-text" id="select-city-max-speed-wind">
 
-                                    </p>
-                                </div>
-                                <div class="weather-widget__info-item">
-                                    <img src="src/img/humidity-icon.svg" alt="humidity">
-                                    <p class="weather-widget__info-text" id="select-city-humidity">
-
-                                    </p>
-                                </div>
-                                <div class="weather-widget__info-item">
-                                    <img src="src/img/pressure-icon.svg" alt="pressure">
-                                    <p class="weather-widget__info-text" id="select-city-pressure">
-
-                                    </p>
+                            <div class="weather-widget__hourly-wrapper">
+                                <h4 class="weather-widget__hourly-title">
+                                    Hourly forecast
+                                </h4>
+                                <div class="weather-widget__hourly-forecast" id="select-city-hourly-wrapper">
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="weather-widget__hourly-wrapper">
-                            <h4 class="weather-widget__hourly-title">
-                                Hourly forecast
-                            </h4>
-                            <div class="weather-widget__hourly-forecast" id="select-city-hourly-wrapper">
-                            </div>
-                        </div>
 
 
-                        <div class="weather-widget__weekly-wrapper">
-                            <h4 class="weather-widget__weekly-title">
-                                Weekly Forecast
-                            </h4>
-                            <div class="weather-widget__weekly-forecast" id="select-city-weekly-wrapper">
+                            <div class="weather-widget__weekly-wrapper">
+                                <h4 class="weather-widget__weekly-title">
+                                    Weekly Forecast
+                                </h4>
+                                <div class="weather-widget__weekly-forecast" id="select-city-weekly-wrapper">
+                                </div>
                             </div>
                         </div>
                     </div>

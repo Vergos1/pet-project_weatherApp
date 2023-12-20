@@ -3,6 +3,8 @@ const apiKey = "YA6TN94A66N2CWQFJK34WGR35";
 
 //doc: DOM elements
 const serverErrorText = document.getElementById('server-error');
+const searchErrorText = document.getElementById('search-error');
+const cityErrorsWrapper = document.getElementById('city-errors-wrapper');
 const selectCityWrapper = document.getElementById('select-city-wrapper');
 const cityesStatick = document.getElementById('cityes-statick');
 const selectCityImage = document.getElementById('select-city-image');
@@ -26,33 +28,7 @@ const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 let isLoadingPopularCities;
 let isLoadingSelectedCity;
 
-//doc: when content is loading
-const loadingPopularCities = (isLoading) => {
-  isLoadingPopularCities = isLoading;
-  if (isLoading) {
-    popularCitiesLoader.style.opacity = '1';
-    popularCitiesLoader.style.display = 'flex';
-  } else {
-    popularCitiesLoader.style.opacity = '0';
-    popularCitiesLoader.style.display = 'none';
-  }
-}
-
-const loadingSelectedCities = (isLoading, wrapper) => {
-  isLoadingSelectedCity = isLoading;
-  if (isLoading) {
-    selectedCitiesLoader.style.opacity = '1';
-    selectedCitiesLoader.style.display = 'flex';
-    wrapper.style.opacity = '0';
-    wrapper.style.display = 'none';
-  } else {
-    selectedCitiesLoader.style.opacity = '0';
-    selectedCitiesLoader.style.display = 'none';
-    wrapper.style.opacity = '1';
-    wrapper.style.display = 'flex';
-  }
-}
-
+//doc: check if all content is loading
 const checkLoaders = () => {
   if (isLoadingPopularCities || isLoadingSelectedCity) {
     mainLoader.style.opacity = '1';
@@ -67,6 +43,36 @@ const checkLoaders = () => {
   }
 };
 
+//doc: when popular city is loading
+const loadingPopularCities = (isLoading) => {
+  isLoadingPopularCities = isLoading;
+  if (isLoading) {
+    popularCitiesLoader.style.opacity = '1';
+    popularCitiesLoader.style.display = 'flex';
+  } else {
+    popularCitiesLoader.style.opacity = '0';
+    popularCitiesLoader.style.display = 'none';
+  }
+  checkLoaders();
+}
+
+//doc: when selected city is loading
+const loadingSelectedCities = (isLoading, wrapper) => {
+  isLoadingSelectedCity = isLoading;
+  if (isLoading) {
+    selectedCitiesLoader.style.opacity = '1';
+    selectedCitiesLoader.style.display = 'flex';
+    wrapper.style.opacity = '0';
+    wrapper.style.display = 'none';
+  } else {
+    selectedCitiesLoader.style.opacity = '0';
+    selectedCitiesLoader.style.display = 'none';
+    wrapper.style.opacity = '1';
+    wrapper.style.display = 'flex';
+  }
+  checkLoaders();
+}
+
 class WeatherWidget {
   constructor(apiKey) {
     this.apiKey = apiKey;
@@ -76,7 +82,6 @@ class WeatherWidget {
   //doc: method for fetch popular cities
   async fetchPopularCitiesApi() {
     loadingPopularCities(true);
-    checkLoaders();
     try {
       await delay(800);
       const responses = await Promise.all([
@@ -99,14 +104,12 @@ class WeatherWidget {
       console.error(error);
     } finally {
       loadingPopularCities(false);
-      checkLoaders();
     }
   }
 
   //doc: method for fetch selected city
   async fetchSelectedCityApi(location = 'Vinnitsa') {
     loadingSelectedCities(true, selectCityWrapper);
-    checkLoaders();
     try {
       await delay(1200);
       const response = await fetch(`${this.baseApiUrl}/VisualCrossingWebServices/rest/services/timeline/${location}?unitGroup=metric&key=${this.apiKey}&contentType=json`);
@@ -117,11 +120,20 @@ class WeatherWidget {
       return data;
     } catch (error) {
       console.error(error);
-      selectCityWrapper.innerHTML = "";
-      serverErrorText.style.display = "block";
+
+      if (
+       error.message === 'HTTP error! status: 404' ||
+       error.message === 'HTTP error! status: 500' ||
+       error.message === 'HTTP error! status: 401'
+      ) {
+        cityErrorsWrapper.style.display = "none";
+        serverErrorText.style.display = "block";
+      } else if (error.message === 'HTTP error! status: 400') {
+        cityErrorsWrapper.style.display = "none";
+        searchErrorText.style.display = "block";
+      }
     } finally {
       loadingSelectedCities(false, selectCityWrapper);
-      checkLoaders();
     }
   }
 
