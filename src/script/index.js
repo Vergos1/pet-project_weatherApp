@@ -109,6 +109,9 @@ class WeatherWidget {
 
   //doc: method for fetch selected city
   async fetchSelectedCityApi(location = 'Vinnitsa') {
+    serverErrorText.style.display = "none";
+    searchErrorText.style.display = "none";
+    cityErrorsWrapper.style.display = "block";
     loadingSelectedCities(true, selectCityWrapper);
     try {
       await delay(1200);
@@ -247,7 +250,6 @@ addEventListener("change", async (event) => {
   }
 })
 reloadBtn.addEventListener("click", (e) => {
-  serverErrorText.style.display = "none";
   widget.renderPopularCities();
   widget.renderSelectCity();
 })
