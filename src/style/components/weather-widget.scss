@@ -116,7 +116,7 @@
   &__selected-city-hidden {
     @include flexColumn;
     gap: 32px;
-  height: max-content;
+    height: max-content;
   }
 
   &__popular-city-wrapper {
@@ -211,6 +211,7 @@
 
   &__popular-card, &__forecast-card, {
     @include flexAllColumnCenter;
+    justify-content: space-between;
     animation: pounce 1s ease;
     gap: 10px;
     text-align: center;
